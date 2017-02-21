@@ -27,11 +27,11 @@ export default class App extends React.Component {
   _renderScene = ({route}) => {
     switch (route.key) {
       case '1':
-        return <ListPage keywords={'Java'} position={route.key}/>;
+        return <ListPage keywords={'Java'} position={route.key} {...this.props} />;
       case '2':
-        return <ListPage keywords={'星球大战'} position={route.key}/>;
+        return <ListPage keywords={'星球大战'} position={route.key} {...this.props}/>;
       case '3':
-        return <ListPage keywords={'华语'} position={route.key}/>;
+        return <ListPage keywords={'华语'} position={route.key} {...this.props}/>;
       default:
         return null;
     }
@@ -54,7 +54,4 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  page: {
-    flex: 1
-  }
 });

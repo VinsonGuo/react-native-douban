@@ -8,6 +8,7 @@ import Api from "../common/Api";
 import ToastUtil from "../common/ToastUtil";
 import Logger from "../common/Logger";
 import ListItem from "./ListItem";
+import WebPage from "./WebPage";
 
 export default class ListPage extends React.Component {
   static propTypes = {
@@ -64,7 +65,17 @@ export default class ListPage extends React.Component {
     return (
       <ListItem
         row={row}
-        onPress={()=>ToastUtil.show(JSON.stringify(row))}
+        onPress={()=>{
+          if(!this.props.navigator) {
+            return;
+          }
+          this.props.navigator.push({
+            component:WebPage,
+            params:{
+              url:row.alt
+            }
+          })
+        }}
         position={this.props.position}/>
     )
   };
@@ -75,11 +86,9 @@ export default class ListPage extends React.Component {
 
   render() {
     return (
-      <View style={{flex:1}}>
-
-        <GiftedListView
-          ref="listview"
-          headerView={()=>{
+      <GiftedListView
+        ref="listview"
+        headerView={()=>{
             return(
               <TextInput
                 underlineColorAndroid='transparent'
@@ -91,17 +100,16 @@ export default class ListPage extends React.Component {
                 onSubmitEditing={()=>{this.refs.listview._refresh()}}/>
              )
           }}
-          rowHasChanged={(r1,r2)=>{r1.id !== r2.id}}
-          enableEmptySections={true}
-          onEndReached={this._onEndReached}
-          onEndReachedThreshold={40}
-          rowView={this._renderRow}
-          onFetch={this._loadData}
-          firstLoader={true} // display a loader for the first fetching
-          pagination={false} // enable infinite scrolling using touch to load more
-          refreshable={true} // enable pull-to-refresh for iOS and touch-to-refresh for Android
-          refreshableTintColor="blue"/>
-      </View>
+        rowHasChanged={(r1,r2)=>{r1.id !== r2.id}}
+        enableEmptySections={true}
+        onEndReached={this._onEndReached}
+        onEndReachedThreshold={40}
+        rowView={this._renderRow}
+        onFetch={this._loadData}
+        firstLoader={true} // display a loader for the first fetching
+        pagination={false} // enable infinite scrolling using touch to load more
+        refreshable={true} // enable pull-to-refresh for iOS and touch-to-refresh for Android
+        refreshableTintColor="blue"/>
     )
   }
 }
