@@ -9,8 +9,8 @@
   "dependencies": {
     "react": "~15.4.0",
     "react-native": "0.41.2",
-    "react-native-easy-toast": "^1.0.5",
     "react-native-gifted-listview": "0.0.15",
+    "react-native-root-toast": "^1.0.3",
     "react-native-tab-view": "0.0.56"
   },
   "devDependencies": {

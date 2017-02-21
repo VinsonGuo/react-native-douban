@@ -4,7 +4,7 @@
 import React from "react";
 import {PropTypes, StyleSheet, Text, View} from "react-native";
 import {TabViewAnimated, TabBar} from "react-native-tab-view";
-import BookPage from "./book/BookPage";
+import ListPage from "./components/ListPage";
 
 export default class App extends React.Component {
   state = {
@@ -27,11 +27,11 @@ export default class App extends React.Component {
   _renderScene = ({route}) => {
     switch (route.key) {
       case '1':
-        return <BookPage/>;
+        return <ListPage keywords={'Java'} position={route.key}/>;
       case '2':
-        return <View style={[ styles.page, { backgroundColor: '#673ab7' } ]}/>;
+        return <ListPage keywords={'星球大战'} position={route.key}/>;
       case '3':
-        return <View style={[ styles.page, { backgroundColor: '#616ab7' } ]}/>;
+        return <ListPage keywords={'华语'} position={route.key}/>;
       default:
         return null;
     }
