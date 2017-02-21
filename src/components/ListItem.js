@@ -28,7 +28,7 @@ export default class ListItem extends React.Component {
     } else if (position == '2') {
       return row.genres;
     } else {
-      return row.rating.average;
+      return row.tags.map((item) => item.name);
     }
   };
 
@@ -60,7 +60,8 @@ export default class ListItem extends React.Component {
           <Text style={[styles.publisher]} numberOfLines={1}>{this._getDesc(row, position)}</Text>
           <Text style={[styles.publisher]} numberOfLines={1}>{this._getAuthor(row, position)}</Text>
         </View>
-        <Text style={[styles.price,{marginTop:10,marginRight:4}]}>{row.rating.average + '分'}</Text>
+        <Text
+          style={[styles.price,{marginTop:10,marginRight:4}]}>{row.rating.average + '分'}</Text>
       </TouchableOpacity>
     )
   }
